@@ -1,0 +1,811 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>WHS Computer Club</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      :root {
+        --blue-darkest: #042c53;
+        --blue-dark: #0c447c;
+        --blue-mid: #185fa5;
+        --blue-bright: #378add;
+        --blue-light: #85b7eb;
+        --blue-lighter: #b5d4f4;
+        --blue-lightest: #e6f1fb;
+      }
+
+      body {
+        font-family: "Montserrat", sans-serif;
+        color: #1a1a2e;
+        background: #f4f7fb;
+        min-height: 100vh;
+      }
+
+      a {
+        color: var(--blue-mid);
+        text-decoration: none;
+      }
+
+      a:hover {
+        text-decoration: underline;
+      }
+
+      /* ── NAV ── */
+      .nav {
+        background: var(--blue-darkest);
+        padding: 0 2rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        height: 60px;
+        position: sticky;
+        top: 0;
+        z-index: 100;
+      }
+
+      .nav-logo {
+        font-size: 15px;
+        font-weight: 600;
+        color: var(--blue-lightest);
+        letter-spacing: 0.03em;
+      }
+
+      .nav-links {
+        display: flex;
+        gap: 2rem;
+        list-style: none;
+      }
+
+      .nav-links a {
+        color: var(--blue-lighter);
+        font-size: 14px;
+        font-weight: 500;
+        transition: color 0.15s;
+      }
+
+      .nav-links a:hover {
+        color: #fff;
+        text-decoration: none;
+      }
+
+      /* ── HERO ── */
+      .hero {
+        background: linear-gradient(
+          135deg,
+          var(--blue-darkest) 0%,
+          var(--blue-dark) 50%,
+          var(--blue-mid) 100%
+        );
+        padding: 4rem 2rem 3.5rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 2rem;
+        min-height: 280px;
+      }
+
+      .hero-content {
+        flex: 1;
+        max-width: 600px;
+      }
+
+      .hero-eyebrow {
+        display: inline-block;
+        background: rgba(255, 255, 255, 0.1);
+        border: 0.5px solid rgba(255, 255, 255, 0.2);
+        color: var(--blue-lighter);
+        font-size: 11px;
+        font-weight: 600;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        padding: 4px 12px;
+        border-radius: 20px;
+        margin-bottom: 1rem;
+      }
+
+      .hero h1 {
+        font-size: clamp(22px, 4vw, 32px);
+        font-weight: 700;
+        color: #fff;
+        line-height: 1.25;
+        margin-bottom: 1rem;
+      }
+
+      .hero p {
+        font-size: 15px;
+        color: var(--blue-lighter);
+        line-height: 1.75;
+        margin-bottom: 1.5rem;
+      }
+
+      .hero-cta {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: var(--blue-mid);
+        color: #fff;
+        font-size: 14px;
+        font-weight: 600;
+        padding: 10px 20px;
+        border-radius: 8px;
+        transition:
+          background 0.15s,
+          transform 0.1s;
+        border: none;
+        cursor: pointer;
+      }
+
+      .hero-cta:hover {
+        background: var(--blue-bright);
+        text-decoration: none;
+        transform: translateY(-1px);
+      }
+
+      .hero-icon-wrap {
+        width: 120px;
+        height: 120px;
+        background: rgba(255, 255, 255, 0.08);
+        border: 0.5px solid rgba(255, 255, 255, 0.15);
+        border-radius: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+      }
+
+      /* ── MAIN ── */
+      .main {
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 2.5rem 2rem;
+      }
+
+      /* ── MOTTO ── */
+      .motto {
+        background: var(--blue-lightest);
+        border: 0.5px solid var(--blue-lighter);
+        border-left: 4px solid var(--blue-mid);
+        border-radius: 0 10px 10px 0;
+        padding: 1.25rem 1.5rem;
+        margin-bottom: 2.5rem;
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+      }
+
+      .motto-q {
+        font-size: 52px;
+        color: var(--blue-bright);
+        line-height: 0.8;
+        font-weight: 700;
+        flex-shrink: 0;
+      }
+
+      .motto p {
+        font-size: 15px;
+        font-style: italic;
+        font-weight: 600;
+        color: var(--blue-dark);
+        line-height: 1.5;
+      }
+
+      /* ── SECTION LABEL ── */
+      .section-label {
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: #888;
+        margin-bottom: 1rem;
+      }
+
+      /* ── CARDS ── */
+      .cards {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 1rem;
+        margin-bottom: 2.5rem;
+      }
+
+      .card {
+        background: #fff;
+        border: 0.5px solid #d8e4f0;
+        border-radius: 12px;
+        padding: 1.5rem;
+        transition:
+          border-color 0.15s,
+          box-shadow 0.15s;
+      }
+
+      .card:hover {
+        border-color: var(--blue-light);
+        box-shadow: 0 4px 16px rgba(55, 138, 221, 0.1);
+      }
+
+      .card-icon {
+        width: 40px;
+        height: 40px;
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 1rem;
+      }
+
+      .card-icon.blue {
+        background: var(--blue-lightest);
+        color: var(--blue-mid);
+      }
+      .card-icon.teal {
+        background: #e1f5ee;
+        color: #0f6e56;
+      }
+      .card-icon.amber {
+        background: #faeeda;
+        color: #854f0b;
+      }
+
+      .card h3 {
+        font-size: 15px;
+        font-weight: 700;
+        color: #1a1a2e;
+        margin-bottom: 0.5rem;
+      }
+
+      .card p {
+        font-size: 13px;
+        color: #555;
+        line-height: 1.65;
+        margin-bottom: 0.75rem;
+      }
+
+      .card a {
+        font-size: 13px;
+        font-weight: 600;
+        color: var(--blue-mid);
+      }
+
+      /* ── OFFICERS ── */
+      .officers-section {
+        margin-bottom: 2.5rem;
+      }
+
+      .section-header {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        margin-bottom: 1.25rem;
+      }
+
+      .section-header-label {
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: #888;
+      }
+
+      .section-line {
+        flex: 1;
+        height: 0.5px;
+        background: #d8e4f0;
+      }
+
+      .officers-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(195px, 1fr));
+        gap: 1rem;
+      }
+
+      .officer-card {
+        background: #fff;
+        border: 0.5px solid #d8e4f0;
+        border-radius: 12px;
+        padding: 1.5rem 1.25rem;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        transition:
+          border-color 0.15s,
+          box-shadow 0.15s;
+      }
+
+      .officer-card:hover {
+        border-color: var(--blue-light);
+        box-shadow: 0 4px 16px rgba(55, 138, 221, 0.1);
+      }
+
+      .officer-avatar {
+        width: 44px;
+        height: 44px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 15px;
+        font-weight: 700;
+        margin-bottom: 1rem;
+        flex-shrink: 0;
+      }
+
+      .avatar-blue {
+        background: var(--blue-lightest);
+        color: var(--blue-dark);
+      }
+      .avatar-teal {
+        background: #e1f5ee;
+        color: #085041;
+      }
+      .avatar-amber {
+        background: #faeeda;
+        color: #633806;
+      }
+      .avatar-purple {
+        background: #eeedfe;
+        color: #3c3489;
+      }
+      .avatar-green {
+        background: #eaf3de;
+        color: #27500a;
+      }
+
+      /* ── SPONSOR CARD ── */
+      .sponsor-card {
+        background: #fff;
+        border: 2px solid var(--blue-lightest);
+        border-radius: 12px;
+        padding: 1.25rem 1.5rem;
+        display: flex;
+        align-items: center;
+        gap: 1.25rem;
+        margin-bottom: 1rem;
+        transition:
+          border-color 0.15s,
+          box-shadow 0.15s;
+      }
+
+      .sponsor-card:hover {
+        border-color: var(--blue-light);
+        box-shadow: 0 4px 16px rgba(55, 138, 221, 0.1);
+      }
+
+      .sponsor-avatar {
+        width: 52px;
+        height: 52px;
+        border-radius: 50%;
+        background: var(--blue-lightest);
+        color: var(--blue-dark);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 17px;
+        font-weight: 700;
+        flex-shrink: 0;
+      }
+
+      .sponsor-info {
+        flex: 1;
+      }
+
+      .sponsor-badge {
+        display: inline-block;
+        background: var(--blue-lightest);
+        color: var(--blue-mid);
+        font-size: 10px;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        padding: 2px 10px;
+        border-radius: 20px;
+        margin-bottom: 0.3rem;
+      }
+
+      .sponsor-name {
+        font-size: 15px;
+        font-weight: 700;
+        color: #1a1a2e;
+        margin-bottom: 0.4rem;
+      }
+
+      .sponsor-quote {
+        font-size: 12px;
+        font-style: italic;
+        color: #777;
+        line-height: 1.6;
+      }
+
+      .officer-role {
+        font-size: 10px;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--blue-mid);
+        margin-bottom: 0.2rem;
+      }
+
+      .officer-name {
+        font-size: 14px;
+        font-weight: 700;
+        color: #1a1a2e;
+        margin-bottom: 0.75rem;
+      }
+
+      .officer-quote {
+        font-size: 12px;
+        font-style: italic;
+        color: #777;
+        line-height: 1.6;
+        border-left: 3px solid var(--blue-lightest);
+        padding-left: 0.75rem;
+        margin-top: auto;
+      }
+
+      /* ── FOOTER ── */
+      .footer {
+        background: var(--blue-darkest);
+        padding: 2rem;
+      }
+
+      .footer-grid {
+        max-width: 900px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+        gap: 2rem;
+      }
+
+      .footer h4 {
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--blue-light);
+        margin-bottom: 0.75rem;
+      }
+
+      .footer p,
+      .footer a {
+        font-size: 13px;
+        color: var(--blue-lighter);
+        line-height: 1.8;
+      }
+
+      .footer a:hover {
+        color: #fff;
+      }
+
+      .footer-btn {
+        display: inline-block;
+        background: var(--blue-mid);
+        color: #fff;
+        font-size: 13px;
+        font-weight: 600;
+        padding: 8px 16px;
+        border-radius: 8px;
+        margin-top: 0.25rem;
+        transition: background 0.15s;
+      }
+
+      .footer-btn:hover {
+        background: var(--blue-bright);
+        text-decoration: none;
+        color: #fff;
+      }
+
+      .footer-divider {
+        max-width: 900px;
+        margin: 1.5rem auto 0;
+        border-top: 0.5px solid rgba(255, 255, 255, 0.1);
+        padding-top: 1rem;
+      }
+
+      .footer-copy {
+        font-size: 12px;
+        color: rgba(255, 255, 255, 0.35);
+      }
+
+      /* ── RESPONSIVE ── */
+      @media (max-width: 600px) {
+        .hero {
+          flex-direction: column;
+          text-align: center;
+        }
+        .hero-icon-wrap {
+          display: none;
+        }
+        .nav-links {
+          gap: 1rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- NAV -->
+    <nav class="nav">
+      <span class="nav-logo">WHS Computer Club</span>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="projects.html">Projects</a></li>
+        <li>
+          <a href="https://www.remind.com/join/whs-comp" target="_blank"
+            >Join</a
+          >
+        </li>
+      </ul>
+    </nav>
+
+    <!-- HERO -->
+    <section class="hero">
+      <div class="hero-content">
+        <span class="hero-eyebrow">Windermere High School</span>
+        <h1>Computer Club</h1>
+        <p>
+          A place for curious minds and digital enthusiasts. Eager students with
+          a shared passion for computers join together to embark on projects,
+          exchange ideas, and collaborate. Build your skills — join us today.
+        </p>
+        <a
+          class="hero-cta"
+          href="https://www.remind.com/join/whs-comp"
+          target="_blank"
+        >
+          <svg
+            width="16"
+            height="16"
+            viewBox="0 0 20 20"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <circle cx="10" cy="10" r="8" stroke="white" stroke-width="1.5" />
+            <path
+              d="M10 6.5v3.5l2.5 1.5"
+              stroke="white"
+              stroke-width="1.5"
+              stroke-linecap="round"
+            />
+          </svg>
+          Join the Remind
+        </a>
+      </div>
+      <div class="hero-icon-wrap">
+        <svg
+          width="60"
+          height="60"
+          viewBox="0 0 60 60"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <rect
+            x="5"
+            y="12"
+            width="50"
+            height="30"
+            rx="4"
+            stroke="white"
+            stroke-width="2"
+          />
+          <path
+            d="M20 42l-3 8M40 42l3 8M16 50h28"
+            stroke="white"
+            stroke-width="2"
+            stroke-linecap="round"
+          />
+          <path
+            d="M16 24l8 6-8 6"
+            stroke="#85B7EB"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+          <path
+            d="M32 36h12"
+            stroke="#85B7EB"
+            stroke-width="2"
+            stroke-linecap="round"
+          />
+        </svg>
+      </div>
+    </section>
+
+    <!-- MAIN CONTENT -->
+    <main class="main">
+      <!-- MOTTO -->
+      <div class="motto">
+        <span class="motto-q">"</span>
+        <p>Creating computer enthusiasts, one project at a time.</p>
+      </div>
+
+      <!-- CARDS -->
+      <p class="section-label">What we offer</p>
+      <div class="cards">
+        <div class="card">
+          <div class="card-icon blue">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+              <rect
+                x="2"
+                y="3"
+                width="16"
+                height="14"
+                rx="2"
+                stroke="currentColor"
+                stroke-width="1.5"
+              />
+              <path
+                d="M6 8h8M6 11h5"
+                stroke="currentColor"
+                stroke-width="1.5"
+                stroke-linecap="round"
+              />
+            </svg>
+          </div>
+          <h3>Meetings</h3>
+          <p>
+            Every Tuesday from 2:20 to 4:00 pm<br />Windermere High School, Room
+            5-111
+          </p>
+          <a href="https://www.remind.com/join/whs-comp" target="_blank"
+            >Join Remind to stay updated →</a
+          >
+        </div>
+
+        <div class="card">
+          <div class="card-icon teal">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+              <rect
+                x="3"
+                y="3"
+                width="14"
+                height="14"
+                rx="2"
+                stroke="currentColor"
+                stroke-width="1.5"
+              />
+              <path
+                d="M10 7v6M7 10h6"
+                stroke="currentColor"
+                stroke-width="1.5"
+                stroke-linecap="round"
+              />
+            </svg>
+          </div>
+          <h3>Projects</h3>
+          <p>
+            Hands-on builds, collaborative work, and real-world coding
+            experience with your peers.
+          </p>
+          <a href="projects.html">See our projects →</a>
+        </div>
+
+        <div class="card">
+          <div class="card-icon amber">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+              <circle
+                cx="10"
+                cy="10"
+                r="7"
+                stroke="currentColor"
+                stroke-width="1.5"
+              />
+              <path
+                d="M7 10c0-1.657 1.343-3 3-3s3 1.343 3 3-1.343 3-3 3"
+                stroke="currentColor"
+                stroke-width="1.5"
+                stroke-linecap="round"
+              />
+            </svg>
+          </div>
+          <h3>Community</h3>
+          <p>
+            Share ideas and grow alongside students who share your passion for
+            technology.
+          </p>
+          <a href="https://www.instagram.com/whs.computerclub/" target="_blank"
+            >@whs.computerclub →</a
+          >
+        </div>
+      </div>
+
+      <!-- OFFICERS -->
+      <div class="officers-section">
+        <div class="section-header">
+          <span class="section-header-label">Meet the officers</span>
+          <div class="section-line"></div>
+        </div>
+
+        <!-- SPONSOR -->
+        <div class="sponsor-card">
+          <div class="sponsor-avatar">JS</div>
+          <div class="sponsor-info">
+            <span class="sponsor-badge">Club Sponsor</span>
+            <p class="sponsor-name">John Stelly</p>
+            <p class="sponsor-quote">[insert quote]</p>
+          </div>
+        </div>
+
+        <div class="officers-grid">
+          <div class="officer-card">
+            <div class="officer-avatar avatar-blue">FA</div>
+            <p class="officer-role">President</p>
+            <p class="officer-name">Francisco Avendano</p>
+            <p class="officer-quote">[insert quote]</p>
+          </div>
+
+          <div class="officer-card">
+            <div class="officer-avatar avatar-teal">AM</div>
+            <p class="officer-role">Vice President</p>
+            <p class="officer-name">Amaan Malik</p>
+            <p class="officer-quote">[insert quote]</p>
+          </div>
+
+          <div class="officer-card">
+            <div class="officer-avatar avatar-amber">PM</div>
+            <p class="officer-role">Project Manager</p>
+            <p class="officer-name">[insert name]</p>
+            <p class="officer-quote">[insert quote]</p>
+          </div>
+
+          <div class="officer-card">
+            <div class="officer-avatar avatar-purple">S</div>
+            <p class="officer-role">Secretary</p>
+            <p class="officer-name">[insert name]</p>
+            <p class="officer-quote">[insert quote]</p>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+      <div class="footer-grid">
+        <div>
+          <h4>WHS Computer Club</h4>
+          <p>Windermere High School<br />Room 5-111</p>
+        </div>
+        <div>
+          <h4>Contact</h4>
+          <a
+            href="/cdn-cgi/l/email-protection#c9aaa6ada0a7aeaaa5bcabf989a6bcbda5a6a6a2e7aaa6a4"
+            ><span
+              class="__cf_email__"
+              data-cfemail="d7b4b8b3beb9b0b4bba2b5e797b8a2a3bbb8b8bcf9b4b8ba"
+              >[email&#160;protected]</span
+            ></a
+          >
+        </div>
+        <div>
+          <h4>Follow</h4>
+          <a href="https://www.instagram.com/whs.computerclub/" target="_blank"
+            >Instagram →</a
+          >
+        </div>
+        <div>
+          <h4>Get Involved</h4>
+          <a
+            class="footer-btn"
+            href="https://www.remind.com/join/whs-comp"
+            target="_blank"
+            >Join the Remind</a
+          >
+        </div>
+      </div>
+      <div class="footer-divider">
+        <p class="footer-copy">©</p>
+      </div>
+    </footer>
+  </body>
+</html>
